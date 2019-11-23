@@ -23,7 +23,7 @@ public class TabHelper {
         }
         return modified;
     }
-    static String replaceAllTabsAndSpaces(List<String> lines) {
+    static String removeAllTabsAndSpaces(List<String> lines) {
         String result = "";
         for (String line: lines) {
             result += line.replaceAll("\t", "").replaceAll(" ", "");
