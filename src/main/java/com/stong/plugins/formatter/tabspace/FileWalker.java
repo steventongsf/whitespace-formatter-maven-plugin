@@ -31,6 +31,17 @@ public class FileWalker {
     int linesChanged = 0;
     
     /**
+     * Constructor
+     * @param baseDirectory
+     * @param extensions
+     * @param log
+     */
+    FileWalker(String baseDirectory, List<String> extensions, Log log) {
+		this.baseDirectory = new File(baseDirectory);
+		this.extensions = extensions;
+		this.log = log;
+	}
+    /**
      * Override default number of spaces to replace tabs with
      * @param n
      */
@@ -42,16 +53,6 @@ public class FileWalker {
     }
 
     /**
-     * Constructor
-     * @param baseDirectory
-     * @param extensions
-     * @param log
-     */
-    FileWalker(String baseDirectory, List<String> extensions, Log log) {
-		this.baseDirectory = new File(baseDirectory);
-		this.log = log;
-	}
-	/**
 	 * @param f
 	 * @return
 	 * @throws MojoExecutionException
@@ -79,7 +80,8 @@ public class FileWalker {
 	public void walk(boolean updateFiles) throws MojoExecutionException, MojoFailureException {
 
 		if (!baseDirectory.isDirectory()) {
-			log.debug("Directory doesn't exist: " + baseDirectory.getAbsolutePath());
+		    if (log != null)
+		        log.debug("Directory doesn't exist: " + baseDirectory.getAbsolutePath());
 			return;
 		}
 		files = getFiles();
@@ -94,11 +96,11 @@ public class FileWalker {
 			for (String line : lines) {
 				lineNumber++;
 				String modifiedLine = modifyLine(line);
-				// INFO Put additional line modifications after this line
 				Boolean isLineModified = (!modifiedLine.equals(line));
 				if(isLineModified){
 				    linesChanged++;
-					log.debug("Tabs found on line " + lineNumber);
+				    if (log != null)
+				        log.debug("Tabs found on line " + lineNumber);
 				}
 				processedLines.add(modifiedLine);
 				isFileModified = (isFileModified || isLineModified);
@@ -128,12 +130,14 @@ public class FileWalker {
 	    return TabHelper.replaceLeadingTabs(line);
 	}
 	void printStats(List<File> files) {
-	    log.info("Total files  : "+totalFiles);
-        log.info("Files changed: "+filesChanged);
-        log.info("Lines changed: "+linesChanged);
-        for (File f:files) {
-            log.info("File:        : "+f.getAbsolutePath());
-        }
+	    if (log != null) {
+    	    log.info("Total files  : "+totalFiles);
+            log.info("Files changed: "+filesChanged);
+            log.info("Lines changed: "+linesChanged);
+            for (File f:files) {
+                log.info("File:        : "+f.getAbsolutePath());
+            }
+	    }
 	    
 	}
 }
