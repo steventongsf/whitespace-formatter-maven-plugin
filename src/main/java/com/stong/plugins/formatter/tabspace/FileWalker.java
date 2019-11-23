@@ -32,12 +32,12 @@ public class FileWalker {
     
     /**
      * Constructor
-     * @param baseDirectory
+     * @param projectBasedir
      * @param extensions
      * @param log
      */
-    FileWalker(String baseDirectory, List<String> extensions, Log log) {
-		this.baseDirectory = new File(baseDirectory);
+    FileWalker(File projectBasedir, List<String> extensions, Log log) {
+		this.baseDirectory = projectBasedir;
 		this.extensions = extensions;
 		this.log = log;
 	}
