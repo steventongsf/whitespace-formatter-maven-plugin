@@ -5,12 +5,18 @@ package com.stong.plugins.formatter.tabspace;
  */
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
+import org.apache.commons.io.FilenameUtils;
 import org.apache.maven.plugin.Mojo;
 import org.apache.maven.plugin.testing.AbstractMojoTestCase;
+import org.codehaus.plexus.util.FileUtils;
 import org.junit.Test;
 
 import com.stong.plugins.formatter.tabspace.FileWalker;
@@ -53,5 +59,23 @@ public class FileWalkerTest {
             }
         }
     }
-
+    @Test
+    public void testGetFiles() {
+        List<String> extensions = new ArrayList<String>();
+        extensions.add("txt");
+        FileWalker fw = new FileWalker(System.getProperty("user.dir")+"/src/test/resources", extensions, null);
+        Collection<File> files = fw.getFiles();
+        List<String> testFiles = new ArrayList<String>();
+        testFiles.add("leadingspaces.txt");
+        testFiles.add("leadingtabs.txt");
+        testFiles.add("middletabs.txt");
+        testFiles.add("trailingspaces.txt");
+        testFiles.add("trailingtabs.txt");
+        for (File f:files) {
+           String fname = FileUtils.basename(f.getAbsolutePath())+"txt";
+           System.out.println(fname);
+           assertTrue(testFiles.contains(fname));
+                
+        }
+    }
 }
