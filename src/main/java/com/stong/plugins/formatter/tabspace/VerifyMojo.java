@@ -17,12 +17,12 @@ import java.io.File;
  */
 public class VerifyMojo	extends BaseMojo {
 	public void execute() throws MojoExecutionException, MojoFailureException {
-		boolean verify = true;
 		Log mavenLog = getLog();
 		mavenLog.info("projectBasedir: "+projectBasedir);
         for (String e:this.fileExtensions) {
             mavenLog.info("extension: "+e);
         }
-		//TabWalker.walk(verify, fileExtensions, projectBasedir, mavenLog);
+        FileWalker fw = new FileWalker(projectBasedir, this.fileExtensions, mavenLog);
+        fw.walk(false);
 	}
 }

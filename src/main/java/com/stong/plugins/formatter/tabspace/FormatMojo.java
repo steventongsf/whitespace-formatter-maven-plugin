@@ -19,12 +19,12 @@ public class FormatMojo	extends BaseMojo {
 
 	public void execute() throws MojoExecutionException, MojoFailureException {
 
-		boolean verify = false;
-
 		Log mavenLog = getLog();
-
-		//FileWalker.walk(verify, fileExtensions, projectBasedir, mavenLog);
-
-	}
+        mavenLog.info("projectBasedir: "+projectBasedir);
+        for (String e:this.fileExtensions) {
+            mavenLog.info("extension: "+e);
+        }
+        FileWalker fw = new FileWalker(projectBasedir, this.fileExtensions, mavenLog);
+        fw.walk(true);	}
 
 }
