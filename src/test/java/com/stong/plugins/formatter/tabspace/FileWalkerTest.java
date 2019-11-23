@@ -53,7 +53,7 @@ public class FileWalkerTest {
     }
     @Test
     public  void testSpaceOverride() {
-        FileWalker fw = new FileWalker(System.getProperty("user.dir"), null, null);
+        FileWalker fw = new FileWalker(new File(System.getProperty("user.dir")), null, null);
         for (int i = 0; i < 25; i++) {
             fw.overrideDefaultNumberSpaces(i);
             if (fw.spaces.length() != i) {
@@ -65,7 +65,7 @@ public class FileWalkerTest {
     public void testGetFiles() {
         List<String> extensions = new ArrayList<String>();
         extensions.add("txt");
-        FileWalker fw = new FileWalker(System.getProperty("user.dir")+"/src/test/resources", extensions, null);
+        FileWalker fw = new FileWalker(new File(System.getProperty("user.dir")+"/src/test/resources"), extensions, null);
         Collection<File> files = fw.getFiles();
         List<String> testFiles = new ArrayList<String>();
         testFiles.add("leadingspaces.txt");
