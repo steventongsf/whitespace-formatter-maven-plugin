@@ -88,7 +88,8 @@ public class FileWalker {
         modifiedFiles = new ArrayList<File>();
 
         for (File file : files) {
-			log.debug("Reading file: " + file.getAbsolutePath());
+            if (log != null)
+                log.debug("Reading file: " + file.getAbsolutePath());
 			List<String> lines = getLines(file);
 			Boolean isFileModified = false;
 			List<String> processedLines = new ArrayList<String>(lines.size());
