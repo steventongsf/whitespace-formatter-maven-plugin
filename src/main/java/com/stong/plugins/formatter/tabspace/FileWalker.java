@@ -23,6 +23,10 @@ public class FileWalker {
     File baseDirectory;
     List<String> extensions;
     
+    Collection<File> files;
+    List<File> modifiedFiles;
+    
+    int totalFiles = 0;
     int filesChanged = 0;
     int linesChanged = 0;
     
@@ -72,17 +76,16 @@ public class FileWalker {
 	 * @throws MojoExecutionException
 	 * @throws MojoFailureException
 	 */
-	public void walk(boolean update) throws MojoExecutionException, MojoFailureException {
+	public void walk(boolean updateFiles) throws MojoExecutionException, MojoFailureException {
 
 		if (!baseDirectory.isDirectory()) {
 			log.debug("Directory doesn't exist: " + baseDirectory.getAbsolutePath());
 			return;
 		}
-		
-		Collection<File> files = getFiles();
+		files = getFiles();
+        modifiedFiles = new ArrayList<File>();
 
-        List<File> modifiedFiles = new ArrayList<File>();
-		for (File file : files) {
+        for (File file : files) {
 			log.debug("Reading file: " + file.getAbsolutePath());
 			List<String> lines = getLines(file);
 			Boolean isFileModified = false;
@@ -103,7 +106,7 @@ public class FileWalker {
 			if (isFileModified) {
 			    filesChanged++;
 			    modifiedFiles.add(file);
-				if (update) {
+				if (updateFiles) {
 				    // Only write file if update is true
     				try {
     					FileUtils.writeLines(file, encoding, processedLines);
@@ -117,15 +120,17 @@ public class FileWalker {
                     throw new MojoFailureException("Tabs found in " + file.getAbsolutePath());
 				}
 			}
-			this.printStats(modifiedFiles);
 		}
+        totalFiles = files.size();
+        this.printStats(modifiedFiles);
 	}
 	String modifyLine(String line) {
 	    return TabHelper.replaceLeadingTabs(line);
 	}
 	void printStats(List<File> files) {
-        log.info("Lines changed: "+linesChanged);
+	    log.info("Total files  : "+totalFiles);
         log.info("Files changed: "+filesChanged);
+        log.info("Lines changed: "+linesChanged);
         for (File f:files) {
             log.info("File:        : "+f.getAbsolutePath());
         }

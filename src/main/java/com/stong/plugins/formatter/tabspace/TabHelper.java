@@ -28,7 +28,6 @@ public class TabHelper {
         for (String line: lines) {
             result += line.replaceAll("\t", "").replaceAll(" ", "");
         }
-        //System.out.println(result);
         return result;
     }
 
