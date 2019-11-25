@@ -11,6 +11,7 @@ import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,7 @@ import java.util.Map;
 import org.apache.maven.plugin.Mojo;
 import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.plugin.testing.AbstractMojoTestCase;
+import org.codehaus.plexus.util.FileUtils;
 import org.junit.Test;
 
 import com.stong.plugins.formatter.tabspace.FileWalker;
@@ -75,6 +77,23 @@ public class FileBasedTabWalkerTest {
                 TabHelper.removeAllTabsAndSpaces((List<String>)results.get("lines")), 
                 TabHelper.removeAllTabsAndSpaces((List<String>)results.get("moddedlines")));
     }
+    @Test
+    public void testRun() throws Exception {
+        String baseDir = System.getProperty("user.dir");
+        File targetDir = new File(baseDir+"/target/tmp");
+        if(!targetDir.exists()){
+            targetDir.mkdirs(); 
+        }
+        Collection<File> files = FileUtils.getFiles(new File(baseDir+"/src/test/resources"),null,null);
+        for (File f:files) {
+            System.out.println(f.getAbsolutePath());
+            String newFileName = f.getName().replace(".txt", ".java");
+            newFileName = newFileName.substring(0,1).toUpperCase()+newFileName.substring(1);
+            System.out.println(targetDir.getAbsolutePath()+"/"+newFileName);
+            FileUtils.copyFile(f, new File(newFileName));
+        }
+        
+    }
 
     static Map<String,Object> buildData(String fileName) throws Exception {
         
@@ -86,8 +105,6 @@ public class FileBasedTabWalkerTest {
         boolean changed = false;
         for (String line: lines) {
             String moddedline = TabHelper.replaceLeadingTabs(line);
-            //System.out.println(line);
-            //System.out.println(moddedline);
             if (!line.equals(moddedline)) {
                 changed = true;
             }
