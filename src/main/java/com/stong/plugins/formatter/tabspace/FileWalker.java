@@ -21,7 +21,7 @@ public class FileWalker implements FileAction {
     String spaces = "    ";
     Log log;
     File baseDirectory;
-    List<String> extensions;
+    List<String> extensions = new ArrayList<String> ();
     
     Collection<File> files;
     List<File> modifiedFiles;
@@ -40,8 +40,13 @@ public class FileWalker implements FileAction {
      */
     FileWalker(File projectBasedir, List<String> extensions, Log log) {
 		this.baseDirectory = projectBasedir;
-		this.extensions = extensions;
 		this.log = log;
+		if (extensions == null) {
+		    this.extensions.add("java");
+		}
+		else {
+		      this.extensions = extensions;
+		}
 	}
     /**
      * Override default number of spaces to replace tabs with
