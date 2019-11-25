@@ -79,6 +79,7 @@ public class FileBasedTabWalkerTest {
     }
     @Test
     public void testRun() throws Exception {
+        // Setup test case
         String baseDir = System.getProperty("user.dir");
         File targetDir = new File(baseDir+"/target/tmp");
         if(!targetDir.exists()){
@@ -89,10 +90,12 @@ public class FileBasedTabWalkerTest {
             System.out.println(f.getAbsolutePath());
             String newFileName = f.getName().replace(".txt", ".java");
             newFileName = newFileName.substring(0,1).toUpperCase()+newFileName.substring(1);
-            System.out.println(targetDir.getAbsolutePath()+"/"+newFileName);
-            FileUtils.copyFile(f, new File(newFileName));
+            File targetFile =  new File(targetDir.getAbsolutePath()+"/"+newFileName);
+            System.out.println(targetFile.getAbsolutePath());
+            FileUtils.copyFile(f,targetFile);
         }
-        
+        // Run logic
+        // Validate results
     }
 
     static Map<String,Object> buildData(String fileName) throws Exception {
