@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class FileWalker {
+public class FileWalker implements FileAction {
     String encoding = "UTF-8";
     // Default is 4 spaces
     String spaces = "    ";
@@ -25,6 +25,8 @@ public class FileWalker {
     
     Collection<File> files;
     List<File> modifiedFiles;
+    
+    FileAction action = this;
     
     int totalFiles = 0;
     int filesChanged = 0;
@@ -96,7 +98,7 @@ public class FileWalker {
 			int lineNumber = 0;
 			for (String line : lines) {
 				lineNumber++;
-				String modifiedLine = modifyLine(line);
+				String modifiedLine = this.action.modifyLine(line);
 				Boolean isLineModified = (!modifiedLine.equals(line));
 				if(isLineModified){
 				    linesChanged++;
@@ -127,8 +129,14 @@ public class FileWalker {
         totalFiles = files.size();
         this.printStats(modifiedFiles);
 	}
-	String modifyLine(String line) {
+	public String modifyLine(String line) {
 	    return TabHelper.replaceLeadingTabs(line);
+	}
+	/**    Override default action
+	 * @param action
+	 */
+	public void overrideFileAction(FileAction action) {
+	    this.action = action;
 	}
 	void printStats(List<File> files) {
 	    if (log != null) {
