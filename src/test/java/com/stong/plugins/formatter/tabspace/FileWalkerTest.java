@@ -24,8 +24,9 @@ import org.junit.Test;
 import com.stong.plugins.formatter.tabspace.FileWalker;
 import com.stong.plugins.formatter.tabspace.TabHelper;
 
-public class FileWalkerTest {
+public class FileWalkerTest implements FileAction {
 
+    
     @Test
     public void testReplaceLeadingTabs() {
         String str = "\t\tsteven was here.";
@@ -83,7 +84,8 @@ public class FileWalkerTest {
     public void testWalk() throws Exception {
         List<String> extensions = new ArrayList<String>();
         extensions.add("txt");
-        FileWalker fw = new FileWalker(System.getProperty("user.dir")+"/src/test/resources", extensions, null);
+        File file = new File(System.getProperty("user.dir")+"/src/test/resources");
+        FileWalker fw = new FileWalker(file, extensions, null);
         Collection<File> files = fw.getFiles();
         try {
             fw.walk(false);
@@ -94,7 +96,29 @@ public class FileWalkerTest {
         }
         fail("FileWalker.walk() should have thrown an exception");
     }
-
+    @Test
+    public void testWalkWithNoActions() throws Exception {
+        List<String> extensions = new ArrayList<String>();
+        extensions.add("txt");
+        File file = new File(System.getProperty("user.dir")+"/src/test/resources");
+        FileWalker fw = new FileWalker(file, extensions, null);
+        fw.overrideFileAction(this);
+        Collection<File> files = fw.getFiles();
+        try {
+            fw.walk(false);
+            assertTrue(fw.modifiedFiles.size() == 0);
+            assertTrue(fw.linesChanged == 0);
+            assertEquals(fw.files.size(), fw.totalFiles);
+        }
+        catch (MojoFailureException e) {
+            fail("FileWalker.walk() should not fail");
+        }
+    }
+    @Test
+    public void testDefaultAttributes() {
+        
+    }
+    
     List<String> testFiles = new ArrayList<String>();
 
     @Before
@@ -105,4 +129,10 @@ public class FileWalkerTest {
         testFiles.add("trailingspaces.txt");
         testFiles.add("trailingtabs.txt");
     }
+    @Override
+    public String modifyLine(String line) {
+        // Do nothing implementation
+        return line;
+    }
 }
+
