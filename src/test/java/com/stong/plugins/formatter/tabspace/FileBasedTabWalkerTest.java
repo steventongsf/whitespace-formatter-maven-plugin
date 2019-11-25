@@ -79,7 +79,8 @@ public class FileBasedTabWalkerTest {
     static Map<String,Object> buildData(String fileName) throws Exception {
         
         Map<String,Object> map = new HashMap<String,Object>();
-        FileWalker fw = new FileWalker(System.getProperty("user.dir"),null,null);
+        File file = new File(System.getProperty("user.dir"));
+        FileWalker fw = new FileWalker(file,null,null);
         List<String> lines = fw.getLines(new File(fileName));
         List<String> moddedlines = new ArrayList<String>();
         boolean changed = false;
