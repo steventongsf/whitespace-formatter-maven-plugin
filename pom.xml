@@ -22,9 +22,13 @@
 			<organizationUrl>https://github.com/steventongsf</organizationUrl>
 		</developer>
 	</developers>
+	<issueManagement>
+		<system>Github</system>
+		<url>https://github.com/steventongsf/tabspace-maven-plugin/issues</url>
+	</issueManagement>
 	<scm>
-		<connection>scm:git:git://github.com/dexecutor/dependent-tasks-executor.git</connection>
-		<developerConnection>scm:git:git@github.com:dexecutor/dexecutor.git</developerConnection>
+		<connection>scm:git:git://github.com/steventongsf/tabspace-maven-plugin.git</connection>
+		<developerConnection>scm:git:git@github.com:steventongsf/tabspace-maven-plugin.git</developerConnection>
 		<url>https://github.com/dexecutor/dependent-tasks-executor</url>
 		<tag>HEAD</tag>
 	</scm>
