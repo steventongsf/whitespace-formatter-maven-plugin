@@ -1,4 +1,4 @@
-package com.stong.plugins.formatter.tabspace;
+package com.sfhuskie.plugins.formatter.tabspace;
 
 public interface FileAction {
     abstract String modifyLine(String line);

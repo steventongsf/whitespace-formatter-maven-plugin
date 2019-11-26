@@ -1,4 +1,4 @@
-package com.stong.plugins.formatter.tabspace;
+package com.sfhuskie.plugins.formatter.tabspace;
 /**
  * @author Steven Tong
  * 
@@ -16,13 +16,10 @@ import java.io.File;
  * @phase validate
  */
 public class VerifyMojo	extends BaseMojo {
-	public void execute() throws MojoExecutionException, MojoFailureException {
-		Log mavenLog = getLog();
-		mavenLog.info("projectBasedir: "+projectBasedir);
-        for (String e:this.fileExtensions) {
-            mavenLog.info("extension: "+e);
-        }
+    public void execute() throws MojoExecutionException, MojoFailureException {
+        super.execute();
         FileWalker fw = new FileWalker(projectBasedir, this.fileExtensions, mavenLog);
-        fw.walk(false);
-	}
+        fw.walk(true);  
+    }
+
 }

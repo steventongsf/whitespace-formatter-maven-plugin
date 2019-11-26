@@ -1,4 +1,4 @@
-package com.stong.plugins.formatter.tabspace;
+package com.sfhuskie.plugins.formatter.tabspace;
 /**
  * @author Steven Tong
  * 
@@ -22,8 +22,8 @@ import org.apache.maven.plugin.testing.AbstractMojoTestCase;
 import org.codehaus.plexus.util.FileUtils;
 import org.junit.Test;
 
-import com.stong.plugins.formatter.tabspace.FileWalker;
-import com.stong.plugins.formatter.tabspace.TabHelper;
+import com.sfhuskie.plugins.formatter.tabspace.FileWalker;
+import com.sfhuskie.plugins.formatter.tabspace.TabHelper;
 
 public class FileBasedTabWalkerTest {
 

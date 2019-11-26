@@ -1,4 +1,4 @@
-package com.stong.plugins.formatter.tabspace;
+package com.sfhuskie.plugins.formatter.tabspace;
 /**
  * @author Steven Tong
  * 
@@ -21,8 +21,9 @@ import org.codehaus.plexus.util.FileUtils;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.stong.plugins.formatter.tabspace.FileWalker;
-import com.stong.plugins.formatter.tabspace.TabHelper;
+import com.sfhuskie.plugins.formatter.tabspace.FileAction;
+import com.sfhuskie.plugins.formatter.tabspace.FileWalker;
+import com.sfhuskie.plugins.formatter.tabspace.TabHelper;
 
 public class FileWalkerTest implements FileAction {
 
