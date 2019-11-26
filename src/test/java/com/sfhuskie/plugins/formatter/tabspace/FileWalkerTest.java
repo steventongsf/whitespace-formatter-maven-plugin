@@ -26,6 +26,21 @@ import com.sfhuskie.plugins.formatter.tabspace.FileWalker;
 import com.sfhuskie.plugins.formatter.tabspace.TabHelper;
 
 public class FileWalkerTest implements FileAction {
+    List<String> testFiles = new ArrayList<String>();
+
+    @Before
+    public void setUp() {
+        testFiles.add("leadingspaces.txt");
+        testFiles.add("leadingtabs.txt");
+        testFiles.add("middletabs.txt");
+        testFiles.add("trailingspaces.txt");
+        testFiles.add("trailingtabs.txt");
+    }
+    @Override
+    public String modifyLine(String line) {
+        // Do nothing implementation
+        return line;
+    }
 
     
     @Test
@@ -105,35 +120,20 @@ public class FileWalkerTest implements FileAction {
         FileWalker fw = new FileWalker(file, extensions, null);
         fw.overrideFileAction(this);
         Collection<File> files = fw.getFiles();
-        try {
-            fw.walk(false);
-            assertTrue(fw.modifiedFiles.size() == 0);
-            assertTrue(fw.linesChanged == 0);
-            assertEquals(fw.files.size(), fw.totalFiles);
-        }
-        catch (MojoFailureException e) {
-            fail("FileWalker.walk() should not fail");
-        }
+        fw.walk(false);
+        assertTrue(fw.modifiedFiles.size() == 0);
+        assertTrue(fw.linesChanged == 0);
+        assertEquals(fw.files.size(), fw.totalFiles);
     }
     @Test
     public void testDefaultAttributes() {
-        
+        File file = new File(System.getProperty("user.dir")+"/src/test/resources");
+        FileWalker fw = new FileWalker(file, null, null);
+        assertTrue(fw.extensions.contains("java"));
+        assertTrue(fw.extensions.size() == 1);
+        assertTrue(fw.action == fw);
+        assertTrue(fw.spaces.contentEquals("    "));
     }
     
-    List<String> testFiles = new ArrayList<String>();
-
-    @Before
-    public void setUp() {
-        testFiles.add("leadingspaces.txt");
-        testFiles.add("leadingtabs.txt");
-        testFiles.add("middletabs.txt");
-        testFiles.add("trailingspaces.txt");
-        testFiles.add("trailingtabs.txt");
-    }
-    @Override
-    public String modifyLine(String line) {
-        // Do nothing implementation
-        return line;
-    }
 }
 
