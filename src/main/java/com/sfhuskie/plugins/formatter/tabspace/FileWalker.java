@@ -34,12 +34,12 @@ public class FileWalker implements FileAction {
     
     /**
      * Constructor
-     * @param projectBasedir
-     * @param extensions
-     * @param log
+     * @param baseDir       Directory to scan
+     * @param extensions    Valid file extensions to scan for
+     * @param log           Instance of logger
      */
-    FileWalker(File projectBasedir, List<String> extensions, Log log) {
-		this.baseDirectory = projectBasedir;
+    FileWalker(File baseDir, List<String> extensions, Log log) {
+		this.baseDirectory = baseDir;
 		this.log = log;
 		if (extensions == null) {
 		    this.extensions.add("java");
@@ -49,8 +49,8 @@ public class FileWalker implements FileAction {
 		}
 	}
     /**
-     * Override default number of spaces to replace tabs with
-     * @param n
+     * 
+     * @param n Override number of spaces to substitute leading tabs with
      */
     void overrideDefaultNumberSpaces(int n) {
         spaces = "";
@@ -60,9 +60,9 @@ public class FileWalker implements FileAction {
     }
 
     /**
-	 * @param f
-	 * @return
-	 * @throws MojoExecutionException
+	 * @param f    File instance to get lines from
+	 * @return List    List of strings
+	 * @throws MojoExecutionException  Failure to read file
 	 */
 	List<String> getLines(File f) throws MojoExecutionException {
         try {
@@ -74,15 +74,15 @@ public class FileWalker implements FileAction {
 	    
 	}
 	/**
-	 * @return
+	 * @return Collection return list of File instances
 	 */
 	Collection<File> getFiles() {
 	    return FileUtils.listFiles(baseDirectory, extensions.toArray(new String[extensions.size() - 1]), true);
 	}
 	/**
-	 * @param updateFiles
-	 * @throws MojoExecutionException
-	 * @throws MojoFailureException
+	 * @param updateFiles  if true, update files. if false, verify files
+	 * @throws MojoExecutionException  Fail to write file
+	 * @throws MojoFailureException    Tabs found in a file
 	 */
 	public void walk(boolean updateFiles) throws MojoExecutionException, MojoFailureException {
 
@@ -138,7 +138,7 @@ public class FileWalker implements FileAction {
 	    return TabHelper.replaceLeadingTabs(line);
 	}
 	/**    Override default action
-	 * @param action
+	 * @param action FileAction instance.  Default is this instance
 	 */
 	public void overrideFileAction(FileAction action) {
 	    this.action = action;

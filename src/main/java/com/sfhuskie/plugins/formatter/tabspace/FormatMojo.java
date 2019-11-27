@@ -18,9 +18,6 @@ public class FormatMojo	extends BaseMojo {
 
 	public void execute() throws MojoExecutionException, MojoFailureException {
 	    super.execute();
-        FileWalker fw = new FileWalker(projectBasedir, this.fileExtensions, mavenLog);
-        fw.walk(true);	
-        
 	}
 
 }
