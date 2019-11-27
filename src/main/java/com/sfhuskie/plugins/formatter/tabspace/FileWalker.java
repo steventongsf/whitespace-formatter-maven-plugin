@@ -80,7 +80,7 @@ public class FileWalker implements FileAction {
 	    return FileUtils.listFiles(baseDirectory, extensions.toArray(new String[extensions.size() - 1]), true);
 	}
 	/**
-	 * @param verify
+	 * @param updateFiles
 	 * @throws MojoExecutionException
 	 * @throws MojoFailureException
 	 */
