@@ -7,13 +7,13 @@ package com.sfhuskie.plugins.formatter.tabspace;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugin.logging.Log;
-
+import org.apache.maven.plugins.annotations.LifecyclePhase;
+import org.apache.maven.plugins.annotations.Mojo;
+import com.sfhuskie.plugins.formatter.tabspace.BaseMojo;
 import java.io.File;
 
-/**
- * @goal format
- * @phase validate
- */
+
+@Mojo(name = "format", defaultPhase = LifecyclePhase.VALIDATE, requiresProject = true, threadSafe = true)
 public class FormatMojo	extends BaseMojo {
 
 	public void execute() throws MojoExecutionException, MojoFailureException {
