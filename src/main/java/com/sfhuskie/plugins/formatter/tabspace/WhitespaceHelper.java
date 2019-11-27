@@ -38,6 +38,16 @@ public class WhitespaceHelper {
         }
         return modified;
     }
+    static String replaceTrailingTabs(String line) {
+        String modified = line;
+        throw new RuntimeException("Not implemented yet");
+        //return modified;
+    }
+    static String replaceTrailingWhitespace(String line) {
+        String modified = line;
+        throw new RuntimeException("Not implemented yet");
+        //return modified;
+    }
     static String removeAllTabsAndSpaces(List<String> lines) {
         String result = "";
         for (String line: lines) {
