@@ -23,7 +23,7 @@ import org.codehaus.plexus.util.FileUtils;
 import org.junit.Test;
 
 import com.sfhuskie.plugins.formatter.tabspace.FileWalker;
-import com.sfhuskie.plugins.formatter.tabspace.TabHelper;
+import com.sfhuskie.plugins.formatter.tabspace.WhitespaceHelper;
 
 public class FileBasedTabWalkerTest {
 
@@ -34,8 +34,8 @@ public class FileBasedTabWalkerTest {
         assertTrue((Boolean)results.get("changed"));
         // Test symbols unchanged
         assertEquals(
-                TabHelper.removeAllTabsAndSpaces((List<String>)results.get("lines")), 
-                TabHelper.removeAllTabsAndSpaces((List<String>)results.get("moddedlines")));
+                WhitespaceHelper.removeAllTabsAndSpaces((List<String>)results.get("lines")), 
+                WhitespaceHelper.removeAllTabsAndSpaces((List<String>)results.get("moddedlines")));
     }
     @Test
     public void testNotReplacingMiddleTabs() throws Exception {
@@ -44,8 +44,8 @@ public class FileBasedTabWalkerTest {
         assertFalse((Boolean)results.get("changed"));
         // Test symbols unchanged
         assertEquals(
-                TabHelper.removeAllTabsAndSpaces((List<String>)results.get("lines")), 
-                TabHelper.removeAllTabsAndSpaces((List<String>)results.get("moddedlines")));
+                WhitespaceHelper.removeAllTabsAndSpaces((List<String>)results.get("lines")), 
+                WhitespaceHelper.removeAllTabsAndSpaces((List<String>)results.get("moddedlines")));
     }
     @Test
     public void testNotReplacingTrailingSpaces() throws Exception {
@@ -54,8 +54,8 @@ public class FileBasedTabWalkerTest {
         assertFalse((Boolean)results.get("changed"));
         // Test symbols unchanged
         assertEquals(
-                TabHelper.removeAllTabsAndSpaces((List<String>)results.get("lines")), 
-                TabHelper.removeAllTabsAndSpaces((List<String>)results.get("moddedlines")));    
+                WhitespaceHelper.removeAllTabsAndSpaces((List<String>)results.get("lines")), 
+                WhitespaceHelper.removeAllTabsAndSpaces((List<String>)results.get("moddedlines")));    
     }
     @Test
     public void testNotReplacingLeadingSpaces() throws Exception {
@@ -64,8 +64,8 @@ public class FileBasedTabWalkerTest {
         assertFalse((Boolean)results.get("changed"));
         // Test symbols unchanged
         assertEquals(
-                TabHelper.removeAllTabsAndSpaces((List<String>)results.get("lines")), 
-                TabHelper.removeAllTabsAndSpaces((List<String>)results.get("moddedlines")));
+                WhitespaceHelper.removeAllTabsAndSpaces((List<String>)results.get("lines")), 
+                WhitespaceHelper.removeAllTabsAndSpaces((List<String>)results.get("moddedlines")));
     }
     @Test
     public void testTrailingTabs() throws Exception {
@@ -74,8 +74,8 @@ public class FileBasedTabWalkerTest {
         assertFalse((Boolean)results.get("changed"));
         // Test symbols unchanged
         assertEquals(
-                TabHelper.removeAllTabsAndSpaces((List<String>)results.get("lines")), 
-                TabHelper.removeAllTabsAndSpaces((List<String>)results.get("moddedlines")));
+                WhitespaceHelper.removeAllTabsAndSpaces((List<String>)results.get("lines")), 
+                WhitespaceHelper.removeAllTabsAndSpaces((List<String>)results.get("moddedlines")));
     }
     @Test
     public void testRun() throws Exception {
@@ -107,7 +107,7 @@ public class FileBasedTabWalkerTest {
         List<String> moddedlines = new ArrayList<String>();
         boolean changed = false;
         for (String line: lines) {
-            String moddedline = TabHelper.replaceLeadingTabs(line);
+            String moddedline = WhitespaceHelper.replaceLeadingTabs(line);
             if (!line.equals(moddedline)) {
                 changed = true;
             }

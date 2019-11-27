@@ -23,7 +23,7 @@ import org.junit.Test;
 
 import com.sfhuskie.plugins.formatter.tabspace.FileAction;
 import com.sfhuskie.plugins.formatter.tabspace.FileWalker;
-import com.sfhuskie.plugins.formatter.tabspace.TabHelper;
+import com.sfhuskie.plugins.formatter.tabspace.WhitespaceHelper;
 
 public class FileWalkerTest implements FileAction {
     List<String> testFiles = new ArrayList<String>();
@@ -46,27 +46,27 @@ public class FileWalkerTest implements FileAction {
     @Test
     public void testReplaceLeadingTabs() {
         String str = "\t\tsteven was here.";
-        assertNotEquals(str, TabHelper.replaceLeadingTabs(str));
+        assertNotEquals(str, WhitespaceHelper.replaceLeadingTabs(str));
     }
     @Test
     public void testNoReplacements() {
         String str = "steven was here.";
-        assertEquals(str, TabHelper.replaceLeadingTabs(str));
+        assertEquals(str, WhitespaceHelper.replaceLeadingTabs(str));
     }
     @Test
     public void testNoReplacementsLeadingSpaces() {
         String str = "    steven was here.";
-        assertEquals(str, TabHelper.replaceLeadingTabs(str));
+        assertEquals(str, WhitespaceHelper.replaceLeadingTabs(str));
     }
     @Test
     public void testNoReplaceMiddleTabs() {
         String str = "    steven\twas\there.";
-        assertEquals(str, TabHelper.replaceLeadingTabs(str));
+        assertEquals(str, WhitespaceHelper.replaceLeadingTabs(str));
     }
     @Test
     public void testNoReplaceTrailingTabs() {
         String str = "steven was here.\t";
-        assertEquals(str, TabHelper.replaceLeadingTabs(str));
+        assertEquals(str, WhitespaceHelper.replaceLeadingTabs(str));
     }
     @Test
     public  void testSpaceOverride() {
