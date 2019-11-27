@@ -42,7 +42,7 @@ public class FileBasedTabWalkerTest {
 
     @Test
     public void testReplaceLeadingTabs() throws Exception {
-        Map<String,Object> results = buildData("src/test/resources/leadingtabs.txt");
+        Map<String,Object> results = buildExpectedActualData("src/test/resources/leadingtabs.txt");
         // Test file was changed
         assertTrue((Boolean)results.get("changed"));
         // Test symbols unchanged
@@ -52,7 +52,7 @@ public class FileBasedTabWalkerTest {
     }
     @Test
     public void testNotReplacingMiddleTabs() throws Exception {
-        Map<String,Object> results = buildData("src/test/resources/middletabs.txt");
+        Map<String,Object> results = buildExpectedActualData("src/test/resources/middletabs.txt");
         // Test file was changed
         assertFalse((Boolean)results.get("changed"));
         // Test symbols unchanged
@@ -62,7 +62,7 @@ public class FileBasedTabWalkerTest {
     }
     @Test
     public void testNotReplacingTrailingSpaces() throws Exception {
-        Map<String,Object> results = buildData("src/test/resources/trailingspaces.txt");
+        Map<String,Object> results = buildExpectedActualData("src/test/resources/trailingspaces.txt");
         // Test file was changed
         assertFalse((Boolean)results.get("changed"));
         // Test symbols unchanged
@@ -72,7 +72,7 @@ public class FileBasedTabWalkerTest {
     }
     @Test
     public void testNotReplacingLeadingSpaces() throws Exception {
-        Map<String,Object> results = buildData("src/test/resources/leadingspaces.txt");
+        Map<String,Object> results = buildExpectedActualData("src/test/resources/leadingspaces.txt");
         // Test file was changed
         assertFalse((Boolean)results.get("changed"));
         // Test symbols unchanged
@@ -82,7 +82,7 @@ public class FileBasedTabWalkerTest {
     }
     @Test
     public void testTrailingTabs() throws Exception {
-        Map<String,Object> results = buildData("src/test/resources/trailingtabs.txt");
+        Map<String,Object> results = buildExpectedActualData("src/test/resources/trailingtabs.txt");
         // Test file was changed
         assertFalse((Boolean)results.get("changed"));
         // Test symbols unchanged
@@ -118,7 +118,7 @@ public class FileBasedTabWalkerTest {
         }
     }
 
-    static Map<String,Object> buildData(String fileName) throws Exception {
+    static Map<String,Object> buildExpectedActualData(String fileName) throws Exception {
         
         Map<String,Object> map = new HashMap<String,Object>();
         File file = new File(System.getProperty("user.dir"));
