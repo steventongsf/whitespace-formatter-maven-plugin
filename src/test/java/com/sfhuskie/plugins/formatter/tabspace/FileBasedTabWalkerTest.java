@@ -100,15 +100,22 @@ public class FileBasedTabWalkerTest {
         }
         Collection<File> files = FileUtils.getFiles(new File(baseDir+"/src/test/resources"),null,null);
         for (File f:files) {
-            System.out.println(f.getAbsolutePath());
             String newFileName = f.getName().replace(".txt", ".java");
             newFileName = newFileName.substring(0,1).toUpperCase()+newFileName.substring(1);
             File targetFile =  new File(targetDir.getAbsolutePath()+"/"+newFileName);
-            System.out.println(targetFile.getAbsolutePath());
             FileUtils.copyFile(f,targetFile);
         }
         // Run logic
+        List<String> exts = new ArrayList<String>();
+        exts.add("java");
+        FileWalker fw = new FileWalker(targetDir, exts, null );
+        fw.walk(true);
         // Validate results
+        fw.walk(false);
+        Collection<File> moddedFiles = FileUtils.getFiles(targetDir,null,null);
+        for (File moddedFile:files) {
+            // TODO Validate
+        }
     }
 
     static Map<String,Object> buildData(String fileName) throws Exception {
