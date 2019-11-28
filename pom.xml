@@ -32,7 +32,7 @@
 	<scm>
 		<connection>scm:git:git://github.com/steventongsf/tabspace-maven-plugin.git</connection>
 		<developerConnection>scm:git:git@github.com:steventongsf/tabspace-maven-plugin.git</developerConnection>
-		<url>https://github.com/dexecutor/dependent-tasks-executor</url>
+		<url>https://github.com/steventongsf/tabspace-maven-plugin</url>
 		<tag>HEAD</tag>
 	</scm>
 	<distributionManagement>
