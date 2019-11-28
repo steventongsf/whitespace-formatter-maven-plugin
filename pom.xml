@@ -3,7 +3,7 @@
 	<groupId>com.sfhuskie.plugins</groupId>
 	<artifactId>tabspace-formatter-maven-plugin</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <name>>tabspace-formatter-maven-plugin</name>
+    <name>tabspace-formatter-maven-plugin</name>
     <description>tab and space formatter</description>
     <url>https://github.com/steventongsf/tabspace-formatter-maven-plugin</url>
 	<packaging>maven-plugin</packaging>
