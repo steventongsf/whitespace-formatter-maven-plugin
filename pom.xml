@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.sfhuskie.plugins</groupId>
 	<artifactId>tabspace-formatter-maven-plugin</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>tabspace-formatter-maven-plugin</name>
     <description>tab and space formatter</description>
     <url>https://github.com/steventongsf/tabspace-formatter-maven-plugin</url>
@@ -33,7 +33,7 @@
 		<connection>scm:git:git://github.com/steventongsf/tabspace-maven-plugin.git</connection>
 		<developerConnection>scm:git:git@github.com:steventongsf/tabspace-maven-plugin.git</developerConnection>
 		<url>https://github.com/steventongsf/tabspace-maven-plugin</url>
-		<tag>HEAD</tag>
+		<tag>v1.0.0</tag>
 	</scm>
 	<distributionManagement>
 		<snapshotRepository>
