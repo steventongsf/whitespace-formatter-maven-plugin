@@ -1,5 +1,5 @@
 
-# tabspace-formatter-maven-plugin
+# whitespace-formatter-maven-plugin
 2
 Initial purpose to replace leading tab characters with spaces from a Maven plugin. This plugin was created to supplement the formatter-maven-plugin which does not support:
 3
