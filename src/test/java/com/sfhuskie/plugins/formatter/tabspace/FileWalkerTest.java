@@ -58,31 +58,6 @@ public class FileWalkerTest implements FileAction {
 
     
     @Test
-    public void testReplaceLeadingTabs() {
-        String str = "\t\tsteven was here.";
-        assertNotEquals(str, WhitespaceHelper.replaceLeadingTabs(str));
-    }
-    @Test
-    public void testNoReplacements() {
-        String str = "steven was here.";
-        assertEquals(str, WhitespaceHelper.replaceLeadingTabs(str));
-    }
-    @Test
-    public void testNoReplacementsLeadingSpaces() {
-        String str = "    steven was here.";
-        assertEquals(str, WhitespaceHelper.replaceLeadingTabs(str));
-    }
-    @Test
-    public void testNoReplaceMiddleTabs() {
-        String str = "    steven\twas\there.";
-        assertEquals(str, WhitespaceHelper.replaceLeadingTabs(str));
-    }
-    @Test
-    public void testNoReplaceTrailingTabs() {
-        String str = "steven was here.\t";
-        assertEquals(str, WhitespaceHelper.replaceLeadingTabs(str));
-    }
-    @Test
     public  void testSpaceOverride() {
         FileWalker fw = new FileWalker(new File(System.getProperty("user.dir")), null, null);
         for (int i = 0; i < 25; i++) {
@@ -98,12 +73,6 @@ public class FileWalkerTest implements FileAction {
         extensions.add("txt");
         FileWalker fw = new FileWalker(new File(System.getProperty("user.dir")+"/src/test/resources"), extensions, null);
         Collection<File> files = fw.getFiles();
-        List<String> testFiles = new ArrayList<String>();
-        testFiles.add("leadingspaces.txt");
-        testFiles.add("leadingtabs.txt");
-        testFiles.add("middletabs.txt");
-        testFiles.add("trailingspaces.txt");
-        testFiles.add("trailingtabs.txt");
         for (File f:files) {
            String fname = FileUtils.basename(f.getAbsolutePath())+"txt";
            assertTrue(testFiles.contains(fname));
