@@ -40,13 +40,27 @@ public class WhitespaceHelper {
     }
     static String replaceTrailingTabs(String line) {
         String modified = line;
-        throw new RuntimeException("Not implemented yet");
-        //return modified;
+        while (true) {
+            if (modified.endsWith("\t")) {
+                modified = modified.substring(0, modified.length() - 1);
+            }
+            else {
+                break;
+            }
+        }
+        return modified;
     }
-    static String replaceTrailingWhitespace(String line) {
+    static String replaceTrailingTabsAndSpaces(String line) {
         String modified = line;
-        throw new RuntimeException("Not implemented yet");
-        //return modified;
+        while (true) {
+            if (modified.endsWith("\t") || modified.endsWith(" ")) {
+                modified = modified.substring(0, modified.length() - 1);
+            }
+            else {
+                break;
+            }
+        }
+        return modified;
     }
     static String removeAllTabsAndSpaces(List<String> lines) {
         String result = "";
