@@ -46,9 +46,7 @@ public class FileBasedTabWalkerTest {
         // Test file was changed
         assertTrue((Boolean)results.get("changed"));
         // Test symbols unchanged
-        assertEquals(
-                WhitespaceHelper.removeAllTabsAndSpaces((List<String>)results.get("lines")), 
-                WhitespaceHelper.removeAllTabsAndSpaces((List<String>)results.get("moddedlines")));
+        assertListsEqual((List<String>)results.get("lines"), (List<String>)results.get("moddedlines"));
     }
     @Test
     public void testNotReplacingMiddleTabs() throws Exception {
@@ -56,19 +54,15 @@ public class FileBasedTabWalkerTest {
         // Test file was changed
         assertFalse((Boolean)results.get("changed"));
         // Test symbols unchanged
-        assertEquals(
-                WhitespaceHelper.removeAllTabsAndSpaces((List<String>)results.get("lines")), 
-                WhitespaceHelper.removeAllTabsAndSpaces((List<String>)results.get("moddedlines")));
+        assertListsEqual((List<String>)results.get("lines"), (List<String>)results.get("moddedlines"));
     }
     @Test
-    public void testNotReplacingTrailingSpaces() throws Exception {
+    public void testReplacingTrailingSpaces() throws Exception {
         Map<String,Object> results = buildExpectedActualData("src/test/resources/trailingspaces.txt");
         // Test file was changed
-        assertFalse((Boolean)results.get("changed"));
+        assertTrue((Boolean)results.get("changed"));
         // Test symbols unchanged
-        assertEquals(
-                WhitespaceHelper.removeAllTabsAndSpaces((List<String>)results.get("lines")), 
-                WhitespaceHelper.removeAllTabsAndSpaces((List<String>)results.get("moddedlines")));    
+        assertListsEqual((List<String>)results.get("lines"), (List<String>)results.get("moddedlines"));
     }
     @Test
     public void testNotReplacingLeadingSpaces() throws Exception {
@@ -76,19 +70,15 @@ public class FileBasedTabWalkerTest {
         // Test file was changed
         assertFalse((Boolean)results.get("changed"));
         // Test symbols unchanged
-        assertEquals(
-                WhitespaceHelper.removeAllTabsAndSpaces((List<String>)results.get("lines")), 
-                WhitespaceHelper.removeAllTabsAndSpaces((List<String>)results.get("moddedlines")));
+        assertListsEqual((List<String>)results.get("lines"), (List<String>)results.get("moddedlines"));
     }
     @Test
     public void testTrailingTabs() throws Exception {
         Map<String,Object> results = buildExpectedActualData("src/test/resources/trailingtabs.txt");
         // Test file was changed
-        assertFalse((Boolean)results.get("changed"));
+        assertTrue((Boolean)results.get("changed"));
         // Test symbols unchanged
-        assertEquals(
-                WhitespaceHelper.removeAllTabsAndSpaces((List<String>)results.get("lines")), 
-                WhitespaceHelper.removeAllTabsAndSpaces((List<String>)results.get("moddedlines")));
+        assertListsEqual((List<String>)results.get("lines"), (List<String>)results.get("moddedlines"));
     }
     @Test
     public void testRun() throws Exception {
@@ -114,10 +104,15 @@ public class FileBasedTabWalkerTest {
         fw.walk(false);
         Collection<File> moddedFiles = FileUtils.getFiles(targetDir,null,null);
         for (File moddedFile:files) {
-            // TODO Validate
+            // TODO Compare java files with txt files
+            
         }
     }
-
+    static void assertListsEqual(List<String> expected, List<String> actual) {
+        assertEquals(
+                WhitespaceHelper.removeAllTabsAndSpaces(expected),
+                WhitespaceHelper.removeAllTabsAndSpaces(actual));
+    }
     static Map<String,Object> buildExpectedActualData(String fileName) throws Exception {
         
         Map<String,Object> map = new HashMap<String,Object>();
@@ -127,7 +122,8 @@ public class FileBasedTabWalkerTest {
         List<String> moddedlines = new ArrayList<String>();
         boolean changed = false;
         for (String line: lines) {
-            String moddedline = WhitespaceHelper.replaceLeadingTabs(line);
+            //String moddedline = WhitespaceHelper.replaceLeadingTabs(line);
+            String moddedline = fw.modifyLine(line);
             if (!line.equals(moddedline)) {
                 changed = true;
             }
