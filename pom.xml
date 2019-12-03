@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.sfhuskie.plugins</groupId>
 	<artifactId>whitespace-formatter-maven-plugin</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
     <name>whitespace-formatter-maven-plugin</name>
     <description>tab and space formatter</description>
     <url>https://github.com/steventongsf/whitespace-formatter-maven-plugin</url>
