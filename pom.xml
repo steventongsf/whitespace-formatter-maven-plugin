@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.sfhuskie.plugins</groupId>
-	<artifactId>tabspace-formatter-maven-plugin</artifactId>
+	<artifactId>whitespace-formatter-maven-plugin</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <name>tabspace-formatter-maven-plugin</name>
+    <name>whitespace-formatter-maven-plugin</name>
     <description>tab and space formatter</description>
-    <url>https://github.com/steventongsf/tabspace-formatter-maven-plugin</url>
+    <url>https://github.com/steventongsf/whitespace-formatter-maven-plugin</url>
 	<packaging>maven-plugin</packaging>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -27,12 +27,12 @@
 	</developers>
 	<issueManagement>
 		<system>Github</system>
-		<url>https://github.com/steventongsf/tabspace-maven-plugin/issues</url>
+		<url>https://github.com/steventongsf/whitespace-maven-plugin/issues</url>
 	</issueManagement>
 	<scm>
-		<connection>scm:git:git://github.com/steventongsf/tabspace-maven-plugin.git</connection>
-		<developerConnection>scm:git:git@github.com:steventongsf/tabspace-maven-plugin.git</developerConnection>
-		<url>https://github.com/steventongsf/tabspace-maven-plugin</url>
+		<connection>scm:git:git://github.com/steventongsf/whitespace-maven-plugin.git</connection>
+		<developerConnection>scm:git:git@github.com:steventongsf/whitespace-maven-plugin.git</developerConnection>
+		<url>https://github.com/steventongsf/whitespace-maven-plugin</url>
 		<tag>HEAD</tag>
 	</scm>
 	<distributionManagement>
