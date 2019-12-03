@@ -38,7 +38,7 @@ import org.junit.Test;
 import com.sfhuskie.plugins.formatter.tabspace.FileWalker;
 import com.sfhuskie.plugins.formatter.tabspace.WhitespaceHelper;
 
-public class FileBasedTabWalkerTest {
+public class FileBasedFileWalkerTest {
 
     @Test
     public void testReplaceLeadingTabs() throws Exception {
@@ -109,6 +109,7 @@ public class FileBasedTabWalkerTest {
         }
     }
     static void assertListsEqual(List<String> expected, List<String> actual) {
+        showLists(expected, actual);
         assertEquals(
                 WhitespaceHelper.removeAllTabsAndSpaces(expected),
                 WhitespaceHelper.removeAllTabsAndSpaces(actual));
@@ -122,7 +123,6 @@ public class FileBasedTabWalkerTest {
         List<String> moddedlines = new ArrayList<String>();
         boolean changed = false;
         for (String line: lines) {
-            //String moddedline = WhitespaceHelper.replaceLeadingTabs(line);
             String moddedline = fw.modifyLine(line);
             if (!line.equals(moddedline)) {
                 changed = true;
@@ -133,5 +133,13 @@ public class FileBasedTabWalkerTest {
         map.put("lines", lines);
         map.put("moddedlines", moddedlines);
         return map;
+    }
+    static void showLists(List<String> expected, List<String> actual) {
+        for (String s:expected) {
+            System.out.println(s);
+        }
+        for (String s:actual) {
+            System.out.println(s);
+        }
     }
 }
