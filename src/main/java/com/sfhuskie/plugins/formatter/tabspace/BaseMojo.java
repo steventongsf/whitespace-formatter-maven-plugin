@@ -37,6 +37,10 @@ abstract class BaseMojo extends AbstractMojo {
    public void execute() throws MojoExecutionException, MojoFailureException {
 
        mavenLog.info("searchDirectory: "+searchDirectory);
+       if (this.fileExtensions.size() == 0) {
+           // set default
+           this.fileExtensions.add("java");
+       }
        for (String e:this.fileExtensions) {
            mavenLog.info("extension: "+e);
        }
