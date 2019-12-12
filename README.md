@@ -7,3 +7,14 @@ Initial purpose to replace leading tab characters with spaces from a Maven plugi
 
 * provide a way to add more formatting options in the future
 * Remove trailing whitespace and tabs
+
+#Releases
+
+## Release 1.0.0 
+* replace leading tabs
+
+## Release 1.1.0
+* Bad release.  Do not use
+
+## Release 1.2.0
+* replace trailing spaces and tabs
