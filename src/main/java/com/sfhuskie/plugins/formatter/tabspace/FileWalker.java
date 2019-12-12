@@ -150,7 +150,9 @@ public class FileWalker implements FileAction {
         this.printStats(modifiedFiles);
 	}
 	public String modifyLine(String line) {
-	    return WhitespaceHelper.replaceLeadingTabs(line);
+	    line = WhitespaceHelper.replaceLeadingTabs(line);
+	    line = WhitespaceHelper.replaceTrailingTabsAndSpaces(line);
+	    return line;
 	}
 	/**    Override default action
 	 * @param action FileAction instance.  Default is this instance
