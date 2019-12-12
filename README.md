@@ -8,6 +8,8 @@ Initial purpose to replace leading tab characters with spaces from a Maven plugi
 * provide a way to add more formatting options in the future
 * Remove trailing whitespace and tabs
 
+A sample client has been provided to illustrate how to use the plugin under client/pom.xml
+
 #Releases
 
 ## Release 1.0.0 
