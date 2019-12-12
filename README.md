@@ -10,7 +10,7 @@ Initial purpose to replace leading tab characters with spaces from a Maven plugi
 
 A sample client has been provided to illustrate how to use the plugin under client/pom.xml
 
-#Releases
+# Releases
 
 ## Release 1.0.0 
 * replace leading tabs
