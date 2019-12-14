@@ -20,3 +20,6 @@ A sample client has been provided to illustrate how to use the plugin under clie
 
 ## Release 1.2.0
 * replace trailing spaces and tabs
+
+## Release 1.2.1
+* Add some default values to the configuration
